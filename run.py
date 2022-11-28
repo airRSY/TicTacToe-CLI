@@ -11,7 +11,21 @@ Game.set_cli_class(CLI)
 
 # --- MAIN CODE ---
 # -- MAIN FUNCTIONS --
-def restart_game() -> bool:
+def is_restart_game() -> bool:
+    """ Ask the user and then restart the game if yes, then restart.
+
+    When called, this functions will ask the user if they want to restart the game.
+    If the user wants to restart the game. They have to write the words in the **accepted list**.
+    This will resets the game by calling the **GameClass.reset()** function.
+
+    If the user doesn't wants to restart the game. They have to write something that is not in
+    the accepted list.
+
+    **The accepted words are: "iya", "ya", "ulang", "kembali", "y", "mengulang", "yes"**
+
+    :return: Is the user wants to restart
+    """
+
     yes = ("iya", "ya", "ulang", "kembali", "y", "mengulang", "yes")
 
     print()
@@ -20,7 +34,6 @@ def restart_game() -> bool:
 
     if reset_input in yes:
         Game.reset()
-        Game.is_game_running = True
         return True
     else:
         return False
@@ -33,5 +46,5 @@ while True:
         continue
     Game.set_game_state()
 
-    if not Game.is_game_running and not restart_game():
+    if not Game.is_game_running and not is_restart_game():
         break

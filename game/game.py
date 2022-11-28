@@ -16,14 +16,22 @@ class GameClass:
     
     # -- PUBLIC METHODS --
     def get_input_send_request(self) -> bool:
+        """ Getting input and verifying it. If it's an valid input, then mark a column on the board.
+
+        When called, and the game is currently running. Then get an input from user by calling **CliClass.get_input()**
+        And if it's an valid input, it's going to format the input so that it's compatible to an 2 dimension list.
+        It passes the formatted input to **GameClass.verify_mark_columns()** arguments.
+
+        :return: Is the input from the user valid
+        """
+
         if self.is_game_running:
             self.cli_class.get_input()
-            succes = self.verify_input()
-            if succes:
+            if self.verify_input():
                 row, column = self.format_input()
                 self.verify_mark_columns(row, column, self.current_player)
-            
-            return succes
+                return True
+            return False
     
     def set_cli_class(self, cliclass_) -> None: 
         self.cli_class = cliclass_
