@@ -33,6 +33,10 @@ class GameClass():
         if (state != 0):
             self.is_game_running = False
             self.cli_class.display_cli()
+            if (state == 1):
+                self.wins[0] += 1
+            elif (state == 2):
+                self.wins[1] += 1
     
     def reset(self) -> None:
         self.user_input = -1
